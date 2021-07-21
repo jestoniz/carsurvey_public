@@ -1,0 +1,90 @@
+This folder contains the files that will interact with the API of CarSurvey.ph
+
+api_request.py is the  main file. This script is done using Python 3.6.9.
+
+The goal of this file is to demonstrate the capability of the API at https://carsurvey.ph/api/ and help the user to develop
+their own script by using this file as reference.
+
+The first thing to do is to setup the api-key in your environment variable. If you don't have an api-key, please contact
+admin@carsurvey.ph and ask for an api-key.
+
+Store your api-key in your bash file with the name CLIENT_API_KEY. A sample code is below..
+
+export CLIENT_API_KEY='<YOUR API-KEY>'
+
+the api_request.py will read this variable for you.
+
+Next step is to run the api_request.py using python.
+
+>>python api_request.py
+
+The flow of the script is as follows:
+1. API will return all of the available Maker (aka Brands)
+2. The api_request.py will ask you to choose which Maker you want.
+3. API will return all the models for that Maker.
+4. The api_request.py willl ask you the transmission, year, and the variant.
+5. The API will return the value of your chosen car model.
+6. You can choose to continue and ask for another model or quit the program.
+
+On each request, you will see the resulting URL request. you can copy past this in any browser and you should see the same
+response
+=======URL Request===================
+https://carsurvey.ph/api/?&api-key=<YOUR KEY>
+=======END: URL Reque================
+
+
+you will also see the JSON Data response
+=======JSON Response Data=============
+{
+  "value_price": "",
+  "highest_value": "",
+  "lowest_value": "",
+  "makers": [
+    "Audi",
+    "BMW",
+    "Bentley",
+    "Cadillac",
+    "Chery",
+    "Chevrolet",
+    "Chrysler",
+    "Dodge",
+    "Ferrari",
+    "Ford",
+    "Foton",
+    "GMC",
+    "Honda",
+    "Hummer",
+    "Hyundai",
+    "Isuzu",
+    "Jaguar",
+    "Jeep",
+    "Kia",
+    "Land Rover",
+    "Lexus",
+    "Lincoln",
+    "MG",
+    "MINI",
+    "Maserati",
+    "Mazda",
+    "Mercedes-Benz",
+    "Mitsubishi",
+    "Nissan",
+    "Opel",
+    "Peugeot",
+    "Porsche",
+    "Seat",
+    "Subaru",
+    "Suzuki",
+    "Toyota",
+    "Volkswagen",
+    "Volvo"
+  ],
+  "models": [],
+  "transmission": [
+    "automatic",
+    "manual",
+    "both"
+  ]
+}
+====END:JSON Response Data=============
+

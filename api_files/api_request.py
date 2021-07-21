@@ -9,13 +9,20 @@ def request_api(args):
     conn = http.client.HTTPSConnection("carsurvey.ph")
     request_url = "/api/?"+args+'&api-key='+client_API_key
     request_url = request_url.replace(' ','+')
-    print(request_url)
+    print('=======URL Request===================')
+    print('https://carsurvey.ph'+request_url)
+    print('=======END: URL Reque================')
+    print()
+
     conn.request("GET", request_url)
     res = conn.getresponse()
     data = res.read()
     json_object = json.loads(data.decode("utf-8"))
     json_formatted_str = json.dumps(json_object, indent=2)
+    print('=======JSON Response Data=============')
     print(json_formatted_str)
+    print('====END:JSON Response Data=============')
+    print()
 
     return json_object
 
