@@ -8,7 +8,6 @@ def request_api(args):
     #conn = http.client.HTTPConnection("localhost:8000")
     conn = http.client.HTTPSConnection("carsurvey.ph")
     request_url = "/api/?"+args+'&api-key='+client_API_key
-    #request_url = "/api/"+args
     request_url = request_url.replace(' ','+')
     print(request_url)
     conn.request("GET", request_url)
