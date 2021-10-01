@@ -1,20 +1,73 @@
 This folder contains the files that will interact with the API of CarSurvey.ph
 
+The main objective of this API is to produce the Fair Market Value of the cars in the Philippine Market. It takes in
+information from the user and gives the fair market value.
+
 api_request.py is the  main file. This script is done using Python 3.6.9.
 
 The goal of this file is to demonstrate the capability of the API at https://carsurvey.ph/api/ and help the user to develop
 their own script by using this file as reference.
 
-The first thing to do is to setup the api-key in your environment variable. If you don't have an api-key, please contact
+First think we need to do is to get your api-key ready. If you don't have an api-key, please contact
 admin@carsurvey.ph and ask for an api-key.
 
+For a quick test of your api-key, you can use your browser and modify the URL below with your key.
+
+=======URL Request===================
+https://carsurvey.ph/api/?&api-key=<YOUR KEY>
+=======END: URL Reque================
+
+if your key is wrong, you will see an empyt JSON response like below:
+  {"value_price": "", "highest_value": "", "lowest_value": ""}
+
+if the api-key is correct, you should already see the available makers (among others) that you can choose from.
+  {"value_price": "", "highest_value": "", "lowest_value": "", "makers": ["Audi", "BMW", "Bentley", "Cadillac", "Chery", "Chevrolet", "Chrysler", "Dodge", "Ferrari", "Ford", "Foton", "GMC", "Honda", "Hummer", "Hyundai", "Isuzu", "Jaguar", "Jeep", "Kia", "Land Rover", "Lexus", "Lincoln", "MG", "MINI", "Maserati", "Mazda", "Mercedes-Benz", "Mitsubishi", "Nissan", "Opel", "Peugeot", "Porsche", "Seat", "Subaru", "Suzuki", "Toyota", "Volkswagen", "Volvo"], "models": [], "transmission": ["automatic", "manual", "both"]}
+
+The next thing to do is to setup the api-key in your environment variable. 
 Store your api-key in your bash file with the name CLIENT_API_KEY. A sample code is below..
 
 export CLIENT_API_KEY='<YOUR API-KEY>'
 
 the api_request.py will read this variable for you.
 
-Next step is to run the api_request.py using python.
+##----------------------------------------------------------
+AVAILABLE FEATURES
+##----------------------------------------------------------
+
+There are several features available for the user to modify which affects the fair market value. Here are the features
+  maker - Manufacturer of the car
+  model - Depending on the selected Maker, the API will show the available Model from the selected Maker.
+  variant_words - depending on the selected maker and model, the user will see the available variant in the JSON Response
+    Data
+  yeat - this is the model year where the car was made.
+  mileage - the user can opt to put the odemeter reading for this feature. The higher the mileage, the lower the fair market
+    value price and vice versa. If there is no mileage input, the API will will not consider mileage in the computation of the
+    fair market value.
+  transmission - selects the transmission of the car. There are three possible input for this features.
+    1. automatic
+    2. manual
+    3. both - if this is selected, both cars with automatic and manual transmission will be considered in the fair market
+    value calculation.
+  repo - we separate the general car information from the repossessed (repo) cars because repo cars may have lower price. If
+    the user wants to include the repo cars, this feature needs to be set as 'true'. if left balnk, the fair market value
+    computation will not consider repo cars.
+
+To modify each feature, the url will take in the follownig format below. Each feature and value should be separated by '&'.
+  feature=value&feature=value
+  
+A sample APi request is below:
+https://www.carsurvey.ph/api/?maker=Toyota&model=Innova&year=2019&mileage=10000&transmission=automatic&repo=True&location_filter=&variant_words=***+2.8+G+Diesel&repo=true&api-key=2KDCslGTdoa3A044
+
+##----------------------------------------------------------
+Sample API request script
+##----------------------------------------------------------
+
+We created a sample API request script to get you started. This file is located in the same folder as this README with file
+name api_request.py. It will read the CLIENT_API_KEY in your environment variable and use it for all transactions.
+
+For simpler interaction, we assumed that mileage is not considered in the fair market value computation and repo cars are
+also not includeed. If you need to modify mileage and repo, please use the api_request_full.py. For the purpose of this
+document, we will focus on api_request.py only.
 
 >>python api_request.py
 
@@ -28,10 +81,6 @@ The flow of the script is as follows:
 
 On each request, you will see the resulting URL request. you can copy past this in any browser and you should see the same
 response
-=======URL Request===================
-https://carsurvey.ph/api/?&api-key=<YOUR KEY>
-=======END: URL Reque================
-
 
 you will also see the JSON Data response
 =======JSON Response Data=============
@@ -88,3 +137,8 @@ you will also see the JSON Data response
 }
 ====END:JSON Response Data=============
 
+
+##----------------------------------------------------------
+#NOTE: if the value_price is equal to zero, that means there is not enough data to produce the fair market value for that
+query. 
+##----------------------------------------------------------

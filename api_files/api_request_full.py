@@ -74,6 +74,15 @@ while (run_program):
     print("Input the year")
     input_year = input()
 
+    print("Input the mileage")
+    input_mileage = input()
+
+    print("Do you want to include repossessed cars in your FMV computation? [Y/N]")
+    response = input()
+    if response.lower() == 'y':
+        input_repo = 'true'
+    else:
+        input_repo = 'false'
     #//----------------------------------------------------------
     #END: Selecting the Model
     #//----------------------------------------------------------
@@ -82,7 +91,7 @@ while (run_program):
     #//----------------------------------------------------------
     # Selecting the Variant
     #//----------------------------------------------------------
-    json_object = request_api("maker="+input_maker+"&model="+input_model+"&year="+input_year+"&transmission="+input_transmission)
+    json_object = request_api("maker="+input_maker+"&model="+input_model+"&year="+input_year+"&transmission="+input_transmission+"&mileage="+input_mileage+"&repo="+input_repo)
     
     print("Select the number of chosen Variant")
     print("*** Indicates the current variant with 2021 model")
@@ -97,7 +106,7 @@ while (run_program):
     #//----------------------------------------------------------
     
     #get the final value
-    json_object = request_api("maker="+input_maker+"&model="+input_model+"&year="+input_year+"&transmission="+input_transmission+"&variant_words="+input_variant)
+    json_object = request_api("maker="+input_maker+"&model="+input_model+"&year="+input_year+"&transmission="+input_transmission+"&variant_words="+input_variant+"&mileage="+input_mileage+"&repo="+input_repo)
 
     print("Select the number of the next step you want to do:")
     print("[0] Exit Program")
