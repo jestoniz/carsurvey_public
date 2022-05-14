@@ -56,11 +56,7 @@ To modify each feature, the url will take in the follownig format below. Each fe
   feature=value&feature=value
   
 A sample APi request is below:
-<<<<<<< HEAD
 https://www.carsurvey.ph/api/?maker=Toyota&model=Innova&year=2019&mileage=10000&transmission=automatic&repo=True&location_filter=&variant_words=***+2.8+G+Diesel&repo=true&api-key=<YOUR KEY>
-=======
-https://www.carsurvey.ph/api/?maker=Toyota&model=Innova&year=2019&mileage=10000&transmission=automatic&repo=True&location_filter=&variant_words=***+2.8+G+Diesel&repo=true
->>>>>>> 09fc85d66151c382dd80153feb03b5e763e1152b
 
 ##----------------------------------------------------------
 Sample API request script
